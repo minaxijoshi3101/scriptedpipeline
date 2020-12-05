@@ -9,16 +9,16 @@ node
   stage("checkout scm")
   {
     sh '''
-      rm -rf $REPO_NAME
+      rm -rf CounterWebApp
       git clone $REPO_NAME
-      cd $REPO_NAME
+      cd CounterWebApp
       git checkout $BRANCH
       '''
   }
   stage("build")
   {
   sh '''
-    cd $REPO_NAME
+    cd CounterWebApp
     mvn clean install
   '''
   }
