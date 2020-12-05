@@ -1,5 +1,7 @@
 def call(Map pipelineparam)
 {
+env.REPO_NAME = pipelineparam.REPO_NAME
+env.BRANCH = pipelineparam.BRANCH
 pipeline
 {
 node
@@ -8,12 +10,14 @@ node
   {
     sh '''
       git clone $REPO_NAME
+      cd $REPO_NAME
       git checkout $BRANCH
       '''
   }
   stage("build")
   {
   sh '''
+    cd $REPO_NAME
     mvn clean install
   '''
   }
