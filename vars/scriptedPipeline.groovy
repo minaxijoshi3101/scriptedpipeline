@@ -9,6 +9,7 @@ node
   stage("checkout scm")
   {
     sh '''
+      rm -rf $REPO_NAME
       git clone $REPO_NAME
       cd $REPO_NAME
       git checkout $BRANCH
