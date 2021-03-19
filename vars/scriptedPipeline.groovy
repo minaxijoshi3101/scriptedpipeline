@@ -21,7 +21,8 @@ node
   stage("static code analysis")
   {
     sh '''
-    
+    mvn sonar:sonar
+    //we refer sonar roperties file, wherein project key is mentioned, sonar runner should be present on our build server.
     '''
   }
   stage("build and upload artifacts to ECR")
