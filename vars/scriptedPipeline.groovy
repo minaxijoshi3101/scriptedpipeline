@@ -11,6 +11,7 @@ node
 {
   stage("checkout scm")
   {
+  
     sh '''
       rm -rf etoedevops
       git clone $REPO_NAME
@@ -27,6 +28,7 @@ node
   }
   stage("build and upload artifacts to ECR")
   {
+      //we use mvn deploy for docker image creation using docker mvn plugin which created=s custom image of an app and pushes that image to docker registry
   sh '''
     cd etoedevops
     /opt/maven/bin/mvn deploy -P docker -Ddocker.host=${DOCKER_HOST} -Ddocker.registry.name=${DOCKER_REGISTRY} -Dmaven.test.skip=true
